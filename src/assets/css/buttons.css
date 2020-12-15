@@ -1,0 +1,23 @@
+.btn {
+  width: 280px;
+  height: 140px;
+  background-color: #fdfdfd;
+  border-radius: 10px;
+  border-width: 2px;
+  margin: 15px;
+  color: #4b4a4a;
+  font-size: 22px;
+}
+
+.btn:hover {
+  background-color: #d5e2ff;
+}
+
+.btn:active {
+  background-color: #b3cafd;
+}
+
+.btn:focus {
+  outline: none;
+}
+/*# sourceMappingURL=buttons.css.map */

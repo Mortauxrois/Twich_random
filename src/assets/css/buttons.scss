@@ -1,0 +1,20 @@
+.btn{
+    width: 280px;
+    height: 140px;
+    background-color: rgb(253, 253, 253);
+    border-radius: 10px;
+    border-width: 2px;
+    margin: 15px;
+    color: rgb(75, 74, 74);
+    font-size: 22px;
+    &:hover{
+        background-color: rgb(213, 226, 255);
+    }
+    &:active{
+        background-color: rgb(179, 202, 253);
+    }
+    &:focus{
+        outline: none;
+    }
+}
+

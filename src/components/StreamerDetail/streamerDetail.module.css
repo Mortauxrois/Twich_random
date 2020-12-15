@@ -1,0 +1,73 @@
+.wrapper{
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px 0 30px 15px;
+}
+
+.logoWrapper{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.logo{
+    /* display: block; */
+    height: 150px;
+    border-radius: 10px;
+}
+.preview{
+    display: block;
+}
+
+.name{
+    color: rgb(19, 24, 80);
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    font-size: 30px;
+    font-weight: 700;
+    margin-left: 15px;
+    margin: 15px 0 15px 15px;
+}
+
+
+.name:hover{
+    color:rgb(7, 185, 255);
+    text-decoration: none;
+}
+
+.about{
+    font-size: 20px;
+    margin: 0 0 0 15px;
+    color: rgb(109, 107, 105);
+    margin: 15px 40px 15px 40px;
+}
+
+.followers{
+    font-size: 15px;
+    font-style: italic;
+    margin: 5px 0 0 15px;
+}
+
+
+.smallDecorator{
+    color: rgb(117, 116, 116);
+}
+
+
+.thousandDecorator{
+    color: rgb(24, 207, 79);
+}
+
+.hundredThousandDecorator{
+    color: rgb(0, 62, 155);
+}
+
+.millionDecorator{
+    color: rgb(154, 0, 160);
+}
+
+
