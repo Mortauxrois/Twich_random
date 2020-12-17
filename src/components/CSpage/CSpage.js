@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import {StreamerDetail} from '../StreamerDetail/StreamerDetail.js'
 import {handleSuccessQuery} from '../../actions/csPageActions.js'
-import {CLIENT_ID} from '../../apiRequests.js'
+import {fetchRandomGameStreamer} from '../../apiRequests.js'
 import css from './csPage.module.css'
 import '../../assets/css/buttons.css'
 
@@ -44,28 +44,24 @@ class CSpage extends React.Component {
     }
 
     //Api запрос на стимеров по доте.
-    getRandom = (offset, n) => {
-        fetch(`https://api.twitch.tv/kraken/streams/?language=ru&game=Counter-Strike: Global Offensive&offset=${offset}&limit=${n}`,  
-        {method: 'get',
-                headers: {
-                        'Accept': 'application/vnd.twitchtv.v5+json', 
-                        'Client-ID': `${CLIENT_ID}`}
-            }
-        )
-            .then(response => response.json())
-            .then(data => {
-                this.onGetStreamers(data.streams);
-            });       
+    getRandom = async (offset, n) => {
+        try{
+            const response = await fetchRandomGameStreamer('Counter-Strike: Global Offensive', offset, n);
+            console.log(response);
+            const data = await response.json();
+            this.onGetStreamers(data.streams);
+            cs_offset += NUMBER_OF_STREAMERS_PER_QUERY;
+        } catch(err){
+            alert(err);
+        }   
     }
 
     onGetStreamers = (s) => {
-        cs_offset += NUMBER_OF_STREAMERS_PER_QUERY;
         this.streamers = this.streamers.concat(s);
         // Рандом из  полученных стримеров
         let i = (Math.random() * this.streamers.length).toFixed(0);
         this.props.handleSuccessQuery(this.streamers[i]);
     }
-}
 
 
 const mapStateToProps = store => {

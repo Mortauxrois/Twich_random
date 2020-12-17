@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Streamer } from './Streamer/Streamer.js'
 import { handleSuccessQuery } from '../../actions/mainPageActions.js'
-import {CLIENT_ID} from '../../apiRequests.js'
+import { fetchRandomStreamers } from '../../apiRequests.js'
 import css from './mainPage.module.css'
 
 const NUMBER_OF_STREAMERS_PER_QUERY = 5;
@@ -47,7 +47,6 @@ class MainPage extends React.Component {
                 if(this.waitForQuery === false){
                     this.waitForQuery = true;
                     this.getStreams(this.offset, NUMBER_OF_STREAMERS_PER_QUERY);
-                    this.offset += NUMBER_OF_STREAMERS_PER_QUERY;
                 }
             }
     }
@@ -56,7 +55,6 @@ class MainPage extends React.Component {
     componentDidMount() {
         window.addEventListener('scroll', this.onScroll);   
         this.getStreams(this.offset, NUMBER_OF_STREAMERS_PER_QUERY);
-        this.offset += NUMBER_OF_STREAMERS_PER_QUERY;
     }
 
     
@@ -66,18 +64,15 @@ class MainPage extends React.Component {
 
 
     //Api запрос на твич
-    getStreams = (offset, n) => {
-        fetch(`https://api.twitch.tv/kraken/streams/?language=ru&offset=${offset}&limit=${n}`,  
-        {method: 'get',
-             headers: {
-                        'Accept': 'application/vnd.twitchtv.v5+json', 
-                        'Client-ID': `${CLIENT_ID}`}
-            }
-        )
-            .then(response => response.json())
-            .then(data => {
-                this.onGetStreamers(data.streams);
-            });       
+    getStreams = async (offset, n) => {
+        try{
+            const response = await fetchRandomStreamers(offset, n);
+            const data = await response.json();
+            this.onGetStreamers(data.streams);
+            this.offset += NUMBER_OF_STREAMERS_PER_QUERY;
+        } catch(err) {
+            alert(err);
+        }
     }
 
 
