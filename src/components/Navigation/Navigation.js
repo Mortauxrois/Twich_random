@@ -2,7 +2,7 @@
 import React from 'react'
 // import PropTypes from 'prop-types'
 import css from './navigation.module.css'
-import { NavLink } from 'react-router-dom/cjs/react-router-dom.min'
+import { NavLink } from 'react-router-dom'
 
 
 export class Navigation extends React.Component {
